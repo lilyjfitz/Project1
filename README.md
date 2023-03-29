@@ -1,3 +1,4 @@
+
 ## Project 1 MIST 4610
 
 Team Name: 21482_3
@@ -35,9 +36,9 @@ ONE TO MANY RELATIONSHIPS:
 
 MANY TO MANY RELATIONSHIPS:
 
-[Data Dictionary](https://docs.google.com/spreadsheets/d/1QlI2LRiLOjDiEhPXp9Ho8GiUAaRuEWVMSRwXiWoqvOo/edit#gid=0)
+🔗 [Data Dictionary](https://docs.google.com/spreadsheets/d/1QlI2LRiLOjDiEhPXp9Ho8GiUAaRuEWVMSRwXiWoqvOo/edit#gid=0)
 ## Queries
-[Query Matrix](https://docs.google.com/spreadsheets/d/1QlI2LRiLOjDiEhPXp9Ho8GiUAaRuEWVMSRwXiWoqvOo/edit#gid=1446005263)
+🔗 [Query Matrix](https://docs.google.com/spreadsheets/d/1QlI2LRiLOjDiEhPXp9Ho8GiUAaRuEWVMSRwXiWoqvOo/edit#gid=1446005263)
 - Query 1:
 - Query 2:
 - Query 3:
