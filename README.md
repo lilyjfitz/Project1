@@ -57,23 +57,90 @@ RECURSIVE Relationship:
 🔗 [Data Dictionary](https://docs.google.com/spreadsheets/d/1QlI2LRiLOjDiEhPXp9Ho8GiUAaRuEWVMSRwXiWoqvOo/edit#gid=0)
 ## Queries
 🔗 [Query Matrix](https://docs.google.com/spreadsheets/d/1QlI2LRiLOjDiEhPXp9Ho8GiUAaRuEWVMSRwXiWoqvOo/edit#gid=1446005263)
-- Query 1:
+
+~ Query 1:
+
 Description: List the different cities of dealerships, count of the number of salespeople in that city, the number of sales that salespeople at that office were sales representatives for, and total sales. 
 
 Justification: A manager would like to know which dealerships are most profitable, as well as the relation between sales and number of salespeople per dealership. It will help them with potential dealership expansions and investment in more profitable dealerships
 
-SELECT Dealership.city, COUNT(DISTINCT Salesperson.spID) AS "Number of Salespeople", COUNT(saleNumber) AS "Number of Sales", SUM(saleAmount) AS "Total Sales" 
-FROM Dealership 
-JOIN Salesperson ON Dealership.dealershipID = Salesperson.dealershipID JOIN Sale ON Salesperson.spID = Sale.spID 
-GROUP BY Dealership.city;
+_Code:_
+
+**SELECT** Dealership.city, **COUNT**(DISTINCT Salesperson.spID) AS "Number of Salespeople", **COUNT**(saleNumber) AS "Number of Sales", SUM(saleAmount) AS "Total Sales"  
+**FROM** Dealership  
+**JOIN** Salesperson **ON** Dealership.dealershipID = Salesperson.dealershipID  
+**JOIN** Sale **ON** Salesperson.spID = Sale.spID  
+**GROUP BY** Dealership.city;
+
+_Result:_
 
 
-Result:
 ![alt text](IMG_8833.png)
-- Query 2:
-- Query 3:
-- Query 4:
-- Query 5:
+
+
+~ Query 2:  
+
+Description: A query to display the name of the Salesperson, the amount of business they have generated, and the number of sales they have completed in descending order of total sales if they have generated over a certain amount of sales.
+
+Justification: A manager can see which of his employees are creating the most business for the company and assigning raises to any salesperson who has generated over $40,000 in sales, as well as a bonus for the top earner.
+
+_Code:_
+
+**SELECT** spName, **CONCAT**("$",ROUND (SUM(saleAmount), 2)) **AS** "Total Sales", COUNT(saleNumber) **AS** "Number of Sales"   
+**FROM** Salesperson  
+**JOIN** Sale **ON** Salesperson.spID = Sale.spID  
+**GROUP BY** spName   
+**HAVING** SUM(saleAmount) > 40000  
+**ORDER BY** SUM(saleAmount) **DESC**;
+
+_Result:_
+
+~ Query 3:
+
+Description: This is a query that will list the percentage of salesmen who have not completed a sale in any of the dealerships and if they have more than the average amount of experience in the job. 
+
+Justification: This will allow for a manager to see what percentage of their workers are not making sales and to disassociate lack of result from the lack of experience. 
+
+_Code:_
+
+**SELECT** **CONCAT**(ROUND(100*(SELECT COUNT(spName) 
+FROM Salesperson WHERE NOT EXISTS (SELECT * FROM Customer WHERE Customer.spID = Salesperson.spID) AND spExperience > (SELECT avg(spexperience) FROM Salesperson))/COUNT(*),2),'%') AS 'NoSaleWorkers'  
+**FROM** Salesperson;
+
+_Result:_
+
+~ Query 4:
+
+Description:This is a query that lists the cities where the dealerships are located, the average payment amount that each dealership makes per sale, the amount of a typical commission for the average sale, and the average profit each dealership makes per sale.
+
+Justification: This allows for each dealership to be able to see how much of a payment they are receiving on average and who has the highest out of all of the dealerships, how much commission each employee would typically be getting for a sale, and the overall profit for each sale after taking awake the employees commission. This can be used to project overage profitability and how much employees make depending on their amount of sales a year.
+
+_Code:_ 
+
+**SELECT** city, (SUM(paymentAmount)/COUNT(paymentID)) AS "AveragePayment", ((SUM(paymentAmount)/COUNT(Salesperson.spID))*0.25) AS "SalesCommission", ((SUM(paymentAmount)/COUNT(paymentID)*0.75))AS "AverageProfit"  
+**FROM** Dealership   
+**JOIN** Salesperson ON Dealership.dealershipID = Salesperson.dealershipID   
+**JOIN** Customer ON Salesperson.spID = Customer.spID 
+**JOIN** Payment ON Customer.customerID = Payment.customerID   
+**GROUP BY** city;
+
+_Result:_
+
+~ Query 5:
+
+Description: This is a query that lists the manufacturer name, VIN number, and vehicle year for vehicles that are sedans and modeled between 2014 and 2022 
+
+Justification: This would allow management to keep a catalog of more recently modeled cars for potential customers to browse from if they were interested in purchasing a sedan style vehicle.
+
+_Code:_
+
+**SELECT** Vehicle.VIN, Vehicle.manufacturerName, vehicleYear.    
+**FROM** Vehicle      
+**JOIN** Manufacturer **ON** Vehicle.manufacturerName=Manufacturer.manufacturerName   
+**WHERE** vehicleType = 'sedan' **AND** vehicleYear BETWEEN 2014 **AND** 2022;
+
+_Result:_
+
 - Query 6:
 - Query 7:
 - Query 8:
