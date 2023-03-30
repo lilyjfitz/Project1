@@ -24,7 +24,6 @@ Improvements:
 - Another improvement is the incorporation of a personalized salesperson. We have a head manager assuring each saleperson is doing their job well, and each customer will only ever have to deal with one salesperson. Dealing with one and only one trained professional will help reduce the customer stress and make them feel more comfortable in the experience.
 ## Data Model
 
-![alt text](IMG_8833.png)
 
 
 Data Model Description:
@@ -57,6 +56,17 @@ RECURSIVE Relationship:
 ## Queries
 🔗 [Query Matrix](https://docs.google.com/spreadsheets/d/1QlI2LRiLOjDiEhPXp9Ho8GiUAaRuEWVMSRwXiWoqvOo/edit#gid=1446005263)
 - Query 1:
+Description: List the different cities of dealerships, count of the number of salespeople in that city, the number of sales that salespeople at that office were sales representatives for, and total sales. 
+
+Justification: A manager would like to know which dealerships are most profitable, as well as the relation between sales and number of salespeople per dealership. It will help them with potential dealership expansions and investment in more profitable dealerships
+
+SELECT Dealership.city, COUNT(DISTINCT Salesperson.spID) AS "Number of Salespeople", COUNT(saleNumber) AS "Number of Sales", SUM(saleAmount) AS "Total Sales" 
+FROM Dealership 
+JOIN Salesperson ON Dealership.dealershipID = Salesperson.dealershipID JOIN Sale ON Salesperson.spID = Sale.spID 
+GROUP BY Dealership.city;
+
+Result:
+![alt text](IMG_8833.png)
 - Query 2:
 - Query 3:
 - Query 4:
