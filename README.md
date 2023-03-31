@@ -26,7 +26,7 @@ _Improvements_
 - Another improvement is the incorporation of a personalized salesperson. We have a head manager assuring each saleperson is doing their job well, and each customer will only ever have to deal with one salesperson. Dealing with one and only one trained professional will help reduce the customer stress and make them feel more comfortable in the experience.
 ## Data Model
 
-![alt text](IMG_2283.png)
+![Screenshot 2023-03-31 at 11 42 53 AM](https://user-images.githubusercontent.com/126897383/229170567-bf7036f4-beae-4b0d-86f5-70dbe4113d14.jpeg)
 
 Data Model Description:
 
@@ -74,7 +74,8 @@ Justification: A manager would like to know which dealerships are most profitabl
 
 _Result:_
 
-![alt text](IMG_7574.png)
+<img width="280" alt="IMG_5291" src="https://user-images.githubusercontent.com/126897383/229170425-5abef2f7-089f-4930-8b27-88f067f262a4.png">
+
 
 ~ Query 2:  
 
@@ -93,7 +94,8 @@ Justification: A manager can see which of his employees are creating the most bu
 
 _Result:_
 
-![alt text](IMG_2743.png)
+<img width="240" alt="IMG_4375" src="https://user-images.githubusercontent.com/126897383/229170389-0391fd2c-dc7d-4204-86ba-784497320fc2.png">
+
 
 ~ Query 3:
 
@@ -109,7 +111,8 @@ Justification: This will allow for a manager to see what percentage of their wor
 
 _Result:_
 
-![alt text](IMG_2240.png)
+<img width="210" alt="IMG_1782" src="https://user-images.githubusercontent.com/126897383/229170307-072a5871-50d9-45b0-934a-852da506b53c.png">
+
 
 ~ Query 4:
 
@@ -128,7 +131,8 @@ Justification: This allows for each dealership to be able to see how much of a p
 
 _Result:_
 
-![alt text](IMG_2554.png)
+<img width="250" alt="IMG_0351" src="https://user-images.githubusercontent.com/126897383/229170246-177418ca-6dec-4586-857b-ca7bd4de20d2.png">
+
 
 ~ Query 5:
 
@@ -145,7 +149,8 @@ Justification: This would allow management to keep a catalog of more recently mo
 
 _Result:_
 
-![alt text](IMG_5966.png)
+<img width="270" alt="IMG_5150" src="https://user-images.githubusercontent.com/126897383/229170161-c2a9c42b-5d22-4bfe-8ed1-52d5a17a4522.png">
+
 
 ~ Query 6:
 
@@ -162,7 +167,8 @@ Justification: A manager needs to keep track of his lower managers and the sales
 
 _Result:_
 
-![alt text](IMG_5150.png)
+<img width="210" alt="IMG_5966" src="https://user-images.githubusercontent.com/126897383/229170098-84caba8a-45dc-4367-8c64-8aca6d0b2697.png">
+
 
 ~ Query 7:
 
@@ -181,7 +187,8 @@ Justification: Especially in today’s time, economic patriotism has driven cons
 
 _Result:_
 
-![alt text](IMG_1782.png)
+<img width="220" alt="IMG_2554" src="https://user-images.githubusercontent.com/126897383/229170021-ba8bf30e-1516-44e1-927d-6c6dc59d6c3d.png">
+
 
 ~ Query 8:
 
@@ -199,7 +206,8 @@ Justification: This query allows the manager to track down specific customers wh
 
 _Result:_
 
-![alt text](IMG_.png)
+<img width="280" alt="IMG_2240" src="https://user-images.githubusercontent.com/126897383/229169926-51dec781-0e6e-4173-82cf-e88efc42c334.png">
+
 
 ~ Query 9:
 
@@ -217,7 +225,7 @@ Justification: This query allows for a manager to evaluate his employees’ perf
 
 _Result:_
 
-![alt text](IMG_4375.png)
+<img width="230" alt="IMG_2743" src="https://user-images.githubusercontent.com/126897383/229169739-417b22cb-bab0-4c3a-bd18-3af38b60a9b7.png">
 
 ~ Query 10:
 
@@ -236,6 +244,7 @@ Justification: This query is important for the manager to assess his choice of v
 
 _Result:_
 
-![alt text](IMG_5291.png)
+<img width="225" alt="IMG_7574" src="https://user-images.githubusercontent.com/126897383/229169532-d75d2312-5d9f-4ea8-9ae2-78d5e45bee27.png">
+
 
 ## Database Information
