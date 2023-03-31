@@ -245,6 +245,3 @@ Justification: This query is important for the manager to assess his choice of v
 _Result:_
 
 <img width="225" alt="IMG_7574" src="https://user-images.githubusercontent.com/126897383/229169532-d75d2312-5d9f-4ea8-9ae2-78d5e45bee27.png">
-
-
-## Database Information
