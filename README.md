@@ -167,7 +167,7 @@ GROUP BY Manufacturer.manufacturerName;
 
 Justification: Especially in today’s time, economic patriotism has driven consumers to lean towards goods and resources manufactured in their home country. As a manager, you want to see if the country of your dealership has customers more focused on domestic or foreign vehicles.
 
-_Result_
+_Result:_
 
 ~ Query 8:
 
