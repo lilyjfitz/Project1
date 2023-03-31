@@ -74,6 +74,8 @@ Justification: A manager would like to know which dealerships are most profitabl
 
 _Result:_
 
+![alt text](IMG_7574.png)
+
 ~ Query 2:  
 
 Description: A query to display the name of the Salesperson, the amount of business they have generated, and the number of sales they have completed in descending order of total sales if they have generated over a certain amount of sales.
@@ -91,6 +93,8 @@ Justification: A manager can see which of his employees are creating the most bu
 
 _Result:_
 
+![alt text](IMG_2743.png)
+
 ~ Query 3:
 
 Description: This is a query that will list the percentage of salesmen who have not completed a sale in any of the dealerships and if they have more than the average amount of experience in the job. 
@@ -104,6 +108,8 @@ Justification: This will allow for a manager to see what percentage of their wor
 
 
 _Result:_
+
+![alt text](IMG_2240.png)
 
 ~ Query 4:
 
@@ -122,6 +128,8 @@ Justification: This allows for each dealership to be able to see how much of a p
 
 _Result:_
 
+![alt text](IMG_2554.png)
+
 ~ Query 5:
 
 Description: This is a query that lists the manufacturer name, VIN number, and vehicle year for vehicles that are sedans and modeled between 2014 and 2022 
@@ -137,6 +145,8 @@ Justification: This would allow management to keep a catalog of more recently mo
 
 _Result:_
 
+![alt text](IMG_5966.png)
+
 ~ Query 6:
 
 Description:  Lists the names of the managers and how many people they supervise
@@ -151,6 +161,8 @@ GROUP BY manager.spName;
 Justification: A manager needs to keep track of his lower managers and the sales people that they supervise to keep a firm grip on company operations and delegate tasks efficiently down the chain of command. If there is a problem towards the bottom of the company hierarchy, the head manager will know which division manager to contact to reach a solution.
 
 _Result:_
+
+![alt text](IMG_5150.png)
 
 ~ Query 7:
 
@@ -169,6 +181,8 @@ Justification: Especially in today’s time, economic patriotism has driven cons
 
 _Result:_
 
+![alt text](IMG_1782.png)
+
 ~ Query 8:
 
 Description: List the names, phone numbers, payment type, money owed, and a discounted accounts payable for customers that have 5 or less installments and owe less than the average total amount owed by each customer
@@ -184,6 +198,8 @@ WHERE installments < 5 AND paymentAmount*installments < (SELECT AVG(paymentAmoun
 Justification: This query allows the manager to track down specific customers who only have a few pay installments left and do not owe much more money to pay off their finance plan so that they can create more immediate cash flow. If the customer decides to pay upfront, the manager can offer a 10% discounted price to encourage the customer to pay off their debts.
 
 _Result:_
+
+![alt text](IMG_.png)
 
 ~ Query 9:
 
@@ -201,6 +217,8 @@ Justification: This query allows for a manager to evaluate his employees’ perf
 
 _Result:_
 
+![alt text](IMG_4375.png)
+
 ~ Query 10:
 
 Description: List the names of manufacturers that have needed service and how many times they’ve needed it.
@@ -217,5 +235,7 @@ GROUP BY Manufacturer.manufacturerName;
 Justification: This query is important for the manager to assess his choice of vehicle inventory when ordering from different brands. By knowing which vehicles need the most servicing, the manager may decide to cut back on purchasing those vehicles from the manufacturer to improve customer satisfaction and decrease service frequencies. 
 
 _Result:_
+
+![alt text](IMG_5291.png)
 
 ## Database Information
