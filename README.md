@@ -60,38 +60,34 @@ RECURSIVE Relationship:
 
 ~ Query 1:
 
-Description: List the different cities of dealerships, count of the number of salespeople in that city, the number of sales that salespeople at that office were sales representatives for, and total sales. 
-
-Justification: A manager would like to know which dealerships are most profitable, as well as the relation between sales and number of salespeople per dealership. It will help them with potential dealership expansions and investment in more profitable dealerships
+Description: List the different cities of dealerships, count of the number of salespeople in that city, the number of sales that salespeople at that office were sales representatives for, and total sales.
 
 _Code:_
 
-**SELECT** Dealership.city, **COUNT**(DISTINCT Salesperson.spID) AS "Number of Salespeople", **COUNT**(saleNumber) AS "Number of Sales", SUM(saleAmount) AS "Total Sales"  
-**FROM** Dealership  
-**JOIN** Salesperson **ON** Dealership.dealershipID = Salesperson.dealershipID  
-**JOIN** Sale **ON** Salesperson.spID = Sale.spID  
-**GROUP BY** Dealership.city;
+SELECT Dealership.city, COUNT(DISTINCT Salesperson.spID) AS "Number of Salespeople", COUNT(saleNumber) AS "Number of Sales", SUM(saleAmount) AS "Total Sales"
+FROM Dealership
+JOIN Salesperson ON Dealership.dealershipID = Salesperson.dealershipID
+JOIN Sale ON Salesperson.spID = Sale.spID
+GROUP BY Dealership.city;
+
+Justification: A manager would like to know which dealerships are most profitable, as well as the relation between sales and number of salespeople per dealership. It will help them with potential dealership expansions and investment in more profitable dealerships.
 
 _Result:_
-
-
-![alt text](IMG_8833.png)
-
 
 ~ Query 2:  
 
 Description: A query to display the name of the Salesperson, the amount of business they have generated, and the number of sales they have completed in descending order of total sales if they have generated over a certain amount of sales.
 
-Justification: A manager can see which of his employees are creating the most business for the company and assigning raises to any salesperson who has generated over $40,000 in sales, as well as a bonus for the top earner.
-
 _Code:_
 
-**SELECT** spName, **CONCAT**("$",ROUND (SUM(saleAmount), 2)) **AS** "Total Sales", COUNT(saleNumber) **AS** "Number of Sales"   
-**FROM** Salesperson  
-**JOIN** Sale **ON** Salesperson.spID = Sale.spID  
-**GROUP BY** spName   
-**HAVING** SUM(saleAmount) > 40000  
-**ORDER BY** SUM(saleAmount) **DESC**;
+SELECT spName, CONCAT("$",ROUND(SUM(saleAmount), 2)) AS "Total Sales", COUNT(saleNumber) AS "Number of Sales"
+FROM Salesperson
+JOIN Sale ON Salesperson.spID = Sale.spID
+GROUP BY spName
+HAVING SUM(saleAmount) > 40000k
+ORDER BY SUM(saleAmount) DESC;
+
+Justification: A manager can see which of his employees are creating the most business for the company and assigning raises to any salesperson who has generated over $40,000 in sales, as well as a bonus for the top earner.
 
 _Result:_
 
@@ -99,30 +95,30 @@ _Result:_
 
 Description: This is a query that will list the percentage of salesmen who have not completed a sale in any of the dealerships and if they have more than the average amount of experience in the job. 
 
-Justification: This will allow for a manager to see what percentage of their workers are not making sales and to disassociate lack of result from the lack of experience. 
-
 _Code:_
 
-**SELECT** **CONCAT**(ROUND(100*(SELECT COUNT(spName) 
-FROM Salesperson WHERE NOT EXISTS (SELECT * FROM Customer WHERE Customer.spID = Salesperson.spID) AND spExperience > (SELECT avg(spexperience) FROM Salesperson))/COUNT(*),2),'%') AS 'NoSaleWorkers'  
-**FROM** Salesperson;
+SELECT CONCAT(ROUND(100*(SELECT COUNT(spName) FROM Salesperson WHERE NOT EXISTS (SELECT * FROM Customer WHERE Customer.spID = Salesperson.spID) AND spExperience > (SELECT avg(spexperience) FROM Salesperson))/COUNT(*),2),'%') AS 'NoSaleWorkers'
+FROM Salesperson;
+
+Justification: This will allow for a manager to see what percentage of their workers are not making sales and to disassociate lack of result from the lack of experience. 
+
 
 _Result:_
 
 ~ Query 4:
 
-Description:This is a query that lists the cities where the dealerships are located, the average payment amount that each dealership makes per sale, the amount of a typical commission for the average sale, and the average profit each dealership makes per sale.
+Description: This is a query that lists the cities where the dealerships are located, the average payment amount that each dealership makes per sale, the amount of a typical commission for the average sale, and the average profit each dealership makes per sale.
 
-Justification: This allows for each dealership to be able to see how much of a payment they are receiving on average and who has the highest out of all of the dealerships, how much commission each employee would typically be getting for a sale, and the overall profit for each sale after taking awake the employees commission. This can be used to project overage profitability and how much employees make depending on their amount of sales a year.
+_Code:_
 
-_Code:_ 
+SELECT city, (SUM(paymentAmount)/COUNT(paymentID)) AS "AveragePayment", ((SUM(paymentAmount)/COUNT(Salesperson.spID))*0.25) AS "SalesCommission", ((SUM(paymentAmount)/COUNT(paymentID)*0.75))AS "AverageProfit"
+FROM Dealership
+JOIN Salesperson ON Dealership.dealershipID = Salesperson.dealershipID
+JOIN Customer ON Salesperson.spID = Customer.spID
+JOIN Payment ON Customer.customerID = Payment.customerID
+GROUP BY city;
 
-**SELECT** city, (SUM(paymentAmount)/COUNT(paymentID)) AS "AveragePayment", ((SUM(paymentAmount)/COUNT(Salesperson.spID))*0.25) AS "SalesCommission", ((SUM(paymentAmount)/COUNT(paymentID)*0.75))AS "AverageProfit"  
-**FROM** Dealership   
-**JOIN** Salesperson ON Dealership.dealershipID = Salesperson.dealershipID   
-**JOIN** Customer ON Salesperson.spID = Customer.spID 
-**JOIN** Payment ON Customer.customerID = Payment.customerID   
-**GROUP BY** city;
+Justification: This allows for each dealership to be able to see how much of a payment they are receiving on average and who has the highest out of all of the dealerships, how much commission each employee would typically be getting for a sale, and the overall profit for each sale after taking the employees commission. This can be used to project overage profitability and how much employees make depending on their amount of sales a year.
 
 _Result:_
 
@@ -130,20 +126,96 @@ _Result:_
 
 Description: This is a query that lists the manufacturer name, VIN number, and vehicle year for vehicles that are sedans and modeled between 2014 and 2022 
 
-Justification: This would allow management to keep a catalog of more recently modeled cars for potential customers to browse from if they were interested in purchasing a sedan style vehicle.
-
 _Code:_
 
-**SELECT** Vehicle.VIN, Vehicle.manufacturerName, vehicleYear.    
-**FROM** Vehicle      
-**JOIN** Manufacturer **ON** Vehicle.manufacturerName=Manufacturer.manufacturerName   
-**WHERE** vehicleType = 'sedan' **AND** vehicleYear BETWEEN 2014 **AND** 2022;
+SELECT Vehicle.VIN, Vehicle.manufacturerName, vehicleYear
+FROM Vehicle
+JOIN Manufacturer ON Vehicle.manufacturerName=Manufacturer.manufacturerName
+WHERE vehicleType = 'sedan' AND vehicleYear BETWEEN 2014 AND 2022;
+
+Justification: This would allow management to keep a catalog of more recently modeled cars for potential customers to browse from if they were interested in purchasing a sedan style vehicle. Since our business specializes in used cars, creating a catalog of more recent manufactured sedans for the customer will push sales of newer cars and thus generate more revenue.
 
 _Result:_
 
-- Query 6:
-- Query 7:
-- Query 8:
-- Query 9:
-- Query 10:
+~ Query 6:
+
+Description:  Lists the names of the managers and how many people they supervise
+
+_Code:_ 
+
+SELECT manager.spName, COUNT(*)
+FROM Salesperson AS managed
+JOIN Salesperson AS manager ON managed.reportsTo = manager.spID
+GROUP BY manager.spName;
+
+Justification: A manager needs to keep track of his lower managers and the sales people that they supervise to keep a firm grip on company operations and delegate tasks efficiently down the chain of command. If there is a problem towards the bottom of the company hierarchy, the head manager will know which division manager to contact to reach a solution.
+
+_Result:_
+
+~ Query 7:
+
+Description: List the manufacturer name and amount of vehicles they sold if the manufacturing and sale took place in the same country.
+
+_Code:_
+
+SELECT Manufacturer.manufacturerName, COUNT(*)
+FROM Manufacturer
+JOIN Vehicle ON Manufacturer.manufacturerName = Vehicle.manufacturerName
+JOIN Dealership ON Vehicle.dealershipID = Dealership.dealershipID
+WHERE hqLocation = country
+GROUP BY Manufacturer.manufacturerName;
+
+Justification: Especially in today’s time, economic patriotism has driven consumers to lean towards goods and resources manufactured in their home country. As a manager, you want to see if the country of your dealership has customers more focused on domestic or foreign vehicles.
+
+_Result_
+
+~ Query 8:
+
+Description: List the names, phone numbers, payment type, money owed, and a discounted accounts payable for customers that have 5 or less installments and owe less than the average total amount owed by each customer
+
+_Code:_
+
+SELECT customerName, customerPhone, paymentType, paymentAmount*installments AS 'Money Owed', .9*(paymentAmount*installments) AS 'Discount Price'
+FROM Customer
+JOIN Payment ON Customer.customerID = Payment.customerID
+JOIN Finance ON Payment.financeID = Finance.financeID
+WHERE installments < 5 AND paymentAmount*installments < (SELECT AVG(paymentAmount*installments) FROM Payment);
+
+Justification: This query allows the manager to track down specific customers who only have a few pay installments left and do not owe much more money to pay off their finance plan so that they can create more immediate cash flow. If the customer decides to pay upfront, the manager can offer a 10% discounted price to encourage the customer to pay off their debts.
+
+_Result:_
+
+~ Query 9:
+
+Description: List the name, salary, and experience of sales people working in client services and the number of sales they've made 
+
+_Code:_
+
+SELECT spName, spSalary, spExperience, COUNT(saleNumber) AS "Number of Sales"
+FROM Salesperson
+LEFT JOIN Sale ON Salesperson.spID = Sale.spID
+WHERE jobTitle = "Client Service"
+GROUP BY spName, spSalary, spExperience;
+
+Justification: This query allows for a manager to evaluate his employees’ performances in the company. The manager with this information can successfully identify which sales people are either exceeding or failing to meet expectations and act accordingly from there.
+
+_Result:_
+
+~ Query 10:
+
+Description: List the names of manufacturers that have needed service and how many times they’ve needed it.
+
+_Code:_
+
+SELECT Manufacturer.manufacturerName, COUNT(Service.serviceID)
+FROM Manufacturer
+JOIN Vehicle ON Manufacturer.manufacturerName = Vehicle.manufacturerName
+JOIN ServiceRequest ON Vehicle.VIN = ServiceRequest.VIN
+JOIN Service ON ServiceRequest.serviceID = Service.serviceID
+GROUP BY Manufacturer.manufacturerName;
+
+Justification: This query is important for the manager to assess his choice of vehicle inventory when ordering from different brands. By knowing which vehicles need the most servicing, the manager may decide to cut back on purchasing those vehicles from the manufacturer to improve customer satisfaction and decrease service frequencies. 
+
+_Result:_
+
 ## Database Information
